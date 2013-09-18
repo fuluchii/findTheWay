@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-exp_type_list = ["str","func"]
+exp_type_list = ["str","func","eval"]
