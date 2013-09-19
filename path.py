@@ -2,6 +2,8 @@
 from state import State
 
 class Path:
+	def __init__(self,output):
+		self.output = output
 
 	def from_(self,state):
 		self.from_state = state
@@ -25,9 +27,11 @@ class Path:
 		if self.from_state.exp_type is 'func':
 			try:
 				return self.expression(*input)
-			except TypeError:
-				print 'TypeError'
+			except:
 				return False
+
+	def get_output(self):
+		return self.output
 
 # def test_func(a,b):
 # 	if a > b:

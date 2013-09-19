@@ -9,8 +9,8 @@ class StateMachine:
 	def run(self,something,*input):
 		if hasattr(something, 'state'):
 			next = something.state.find_way(*input)
-			if next is not None:
-				something.state = next
-				return True
-			else:
+			if next is None:
 				return False
+			else:
+				something.state = next[0]
+				return next[1]

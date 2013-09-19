@@ -12,5 +12,5 @@ class State:
 	def find_way(self,*input):
 		for path in self.paths:
 			if path.is_next(*input):
-				return path.next_state
+				return path.next_state,path.output
 		return None

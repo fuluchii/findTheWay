@@ -30,17 +30,13 @@ def testfunc2(a):
 	else:
 		return False
 
-_0to1 = Path()
-_0to1.from_(state0).to_(state1).when('go to 1')
+_0to1 = Path('0 to state 1').from_(state0).to_(state1).when('go to 1')
 
-_0to2 = Path()
-_0to2.from_(state0).to_(state2).when('go to 2')
+_0to2 = Path('0 to state 2').from_(state0).to_(state2).when('go to 2')
 
-_1to2 = Path()
-_1to2.from_(state1).to_(state2).when(testfunc1)
+_1to2 = Path('1 to state 2').from_(state1).to_(state2).when(testfunc1)
 
-_2to3 = Path()
-_2to3.from_(state2).to_(state3).when(testfunc2)
+_2to3 = Path('2 to state 3').from_(state2).to_(state3).when(testfunc2)
 
 test = TestObject(state0)
 
@@ -48,11 +44,15 @@ test = TestObject(state0)
 #and start loop
 while(True):
 	line = raw_input('input>>')
-	pre_state = test.state.state_desc
-	if not statemachine.run(test,line):
-		print 'end.'
+	if line == 'quit':
 		break
+	pre_state = test.state.state_desc
+	output = statemachine.run(test,line) 
+	if output is not False:
+		print 'output is :'+output
+		print 'state change: from %s to %s.' % (pre_state,test.state.state_desc)
 	else:
-		print 'from %s to %s.' % (pre_state,test.state.state_desc)
+		print 'invalid input:'+line
+		
 
 
